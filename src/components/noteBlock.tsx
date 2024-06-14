@@ -3,10 +3,11 @@ import React, { useState, useEffect } from 'react';
 
 import { TextField, Button, styled, Dialog, DialogTitle, DialogContent, DialogActions, IconButton, Typography } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import { useUserContext } from '../context/notesContext';
+import { useSaveUserNotesContext, useUserContext } from '../context/notesContext';
 
 export default function NoteBlock() {
-  const { user, userNotes, saveUserNotes } = useUserContext() || {};
+  const { user, userNotes } = useUserContext() || {};
+  const saveUserNotes = useSaveUserNotesContext();
   const [editMode, setEditMode] = useState(false);
   const [notes, setNotes] = useState({
     noteTitle: '',
@@ -27,8 +28,10 @@ export default function NoteBlock() {
   };
 
   const handleSave = () => {
-    saveUserNotes(notes);
-    setEditMode(false);
+    if (saveUserNotes != null) {
+      saveUserNotes(notes);
+      setEditMode(false);
+  }
   };
 
   const handleCancel = () => {

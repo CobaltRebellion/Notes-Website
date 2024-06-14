@@ -68,3 +68,8 @@ export const logOut = () => {
 export const useUserContext = () => {
   return useContext(UserContext);
 };
+
+export function useSaveUserNotesContext() {
+  const context = useContext(UserContext);
+  return context?.saveUserNotes;
+}
