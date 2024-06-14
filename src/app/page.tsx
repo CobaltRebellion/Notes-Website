@@ -1,10 +1,16 @@
-// import NoteBlock from "@/components/noteBlock";
+'use client'
+import NoteBlock from "@/components/noteBlock";
+import Navbar from "@/components/navBar";
+import { UserContextProvider, useUserContext } from "@/context/notesContext";
 
 export default function Home() {
   return (
-    <main>
-      Hello
-      {/* <NoteBlock /> */}
-    </main>
+    <UserContextProvider>
+      <div>
+        <Navbar />
+      </div>
+      <NoteBlock />
+    </UserContextProvider>
+    
   );
 }
